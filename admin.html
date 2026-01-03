@@ -1,0 +1,134 @@
+
+<html>
+<head>
+<title>Statiz | Admin Panel</title>
+<link rel="stylesheet" href="styles/navbar.css">
+<link rel="stylesheet" href="styles/admin.css">
+<script src="scripts/auth.js"></script>
+</head>
+
+<body>
+
+<nav class=\"navbar\">
+  <div class=\"navbar-container\">
+    <a href=\"index.html\" class=\"navbar-logo\">🎨 Stat<span>iz</span> Admin</a>
+    <ul class=\"nav-menu\">
+      <li class=\"nav-item\">
+        <a href=\"#\" class=\"nav-link\">Dashboard</a>
+      </li>
+      <li class=\"nav-item\">
+        <a href=\"#\" class=\"nav-link\">Products</a>
+      </li>
+      <li class=\"nav-item\">
+        <a href=\"#\" class=\"nav-link\">Orders</a>
+      </li>
+    </ul>
+    <div class=\"nav-buttons\">
+      <button class=\"nav-btn logout\">Logout</button>
+    </div>
+    <div class=\"hamburger\">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<header>
+  📦 Statiz Admin Panel
+</header>
+
+<div class="container">
+
+<div class="card">
+<h3>Add Product</h3>
+<input id="productName" placeholder="Product Name">
+<input id="productPrice" placeholder="Price">
+<input id="productCategory" placeholder="Category">
+<button onclick="addProduct()">Add Product</button>
+</div>
+
+<div class="card">
+<h3>Registered Users</h3>
+<table id="usersTable">
+<tr><th>Name</th><th>Email</th><th>Action</th></tr>
+</table>
+</div>
+
+<div class="card">
+<h3>Orders</h3>
+<table>
+<tr><th>Order ID</th><th>User</th><th>Total</th><th>Status</th></tr>
+<tr><td>#101</td><td>Vivek</td><td>₹798</td><td>Pending</td></tr>
+</table>
+</div>
+
+</div>
+
+<script>
+const API = 'http://localhost:3000';
+
+if (localStorage.getItem('isAdmin') !== 'true') {
+  alert('Admin access required');
+  window.location.href = 'login.html';
+}
+
+document.querySelector('.logout-btn').addEventListener('click', () => {
+  localStorage.removeItem('isAdmin');
+  localStorage.removeItem('userEmail');
+  window.location.href = 'login.html';
+});
+
+async function loadUsers() {
+  try {
+    const res = await fetch(`${API}/users`);
+    const users = await res.json();
+    const table = document.getElementById('usersTable');
+    table.innerHTML = '<tr><th>Name</th><th>Email</th><th>Action</th></tr>';
+    
+    users.forEach(user => {
+      const row = table.insertRow();
+      row.innerHTML = `
+        <td>${user.name}</td>
+        <td>${user.email}</td>
+        <td><button onclick="deleteUser(${user.id})">Delete</button></td>
+      `;
+    });
+  } catch (error) {
+    console.error('Error loading users:', error);
+  }
+}
+
+async function deleteUser(id) {
+  if (confirm('Delete this user?')) {
+    try {
+      await fetch(`${API}/users/${id}`, { method: 'DELETE' });
+      loadUsers();
+    } catch (error) {
+      alert('Error deleting user');
+    }
+  }
+}
+
+function addProduct() {
+  const name = document.getElementById('productName').value;
+  const price = document.getElementById('productPrice').value;
+  const category = document.getElementById('productCategory').value;
+  
+  if (!name || !price || !category) {
+    alert('Please fill all fields');
+    return;
+  }
+  
+  alert('Product added (feature coming soon)');
+  document.getElementById('productName').value = '';
+  document.getElementById('productPrice').value = '';
+  document.getElementById('productCategory').value = '';
+}
+
+loadUsers();
+</script>
+
+<script src="scripts/navbar.js"></script>
+</body>
+</html>

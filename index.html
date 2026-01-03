@@ -1,0 +1,66 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Statiz | Art & Stationery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles/navbar.css">
+<link rel="stylesheet" href="styles/index.css">
+<script src="scripts/auth.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="index.html" class="navbar-logo">🎨 Stat<span>iz</span></a>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item">
+        <a href="myorders.html" class="nav-link">My Orders</a>
+      </li>
+      <li class="nav-item">
+        <a href="cart.html" class="nav-link cart-link">
+          🛒 Cart <span class="cart-count" id="navCartCount">0</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">About</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+    <div class="nav-greeting"></div>
+    <div class="nav-buttons">
+      <button id="themeToggle" class="nav-btn theme-btn">☀️</button>
+      <a href="login.html"><button class="nav-btn">Login</button></a>
+    </div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="categories">
+  <div class="category-card">
+    <div class="category-icon">🎨</div>
+    <h2>Art & Crafts</h2>
+    <p>Explore our collection of premium art and craft supplies</p>
+    <a href="art-crafts.html"><button class="category-btn">Shop Now</button></a>
+  </div>
+
+  <div class="category-card">
+    <div class="category-icon">📓</div>
+    <h2>Stationery Items</h2>
+    <p>Quality stationery products for students and professionals</p>
+    <a href="stationery.html"><button class="category-btn">Shop Now</button></a>
+  </div>
+</div>
+
+<script src="scripts/navbar.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+.navbar-logo {
+  text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #ff9800, 0 0 35px #ff9800, 0 0 40px #ff9800, 0 0 50px #ff9800, 0 0 75px #ff9800;
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.navbar-logo:hover {
+    text-shadow: 0 0 10px #fff, 0 0 20px #fff, 0 0 30px #fff, 0 0 40px #ff9800, 0 0 70px #ff9800, 0 0 80px #ff9800, 0 0 100px #ff9800, 0 0 150px #ff9800;
+}
+
+.navbar-logo span {
+  text-shadow: 0 0 5px #ff9800, 0 0 10px #ff9800, 0 0 15px #ff9800, 0 0 20px #ff9800, 0 0 35px #ff9800, 0 0 40px #ff9800, 0 0 50px #ff9800, 0 0 75px #ff9800;
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.navbar-logo:hover span {
+    text-shadow: 0 0 10px #ff9800, 0 0 20px #ff9800, 0 0 30px #ff9800, 0 0 40px #ff9800, 0 0 70px #ff9800, 0 0 80px #ff9800, 0 0 100px #ff9800, 0 0 150px #ff9800;
+}
+
+.nav-link {
+    transition: text-shadow 0.3s ease-in-out;
+}
+
+.nav-link:hover {
+    text-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff;
+}
+
+.category-card h2 {
+  text-shadow: 0 0 5px #ce93d8, 0 0 10px #ce93d8, 0 0 15px #ce93d8, 0 0 20px #6a1b9a, 0 0 35px #6a1b9a, 0 0 40px #6a1b9a, 0 0 50px #6a1b9a, 0 0 75px #6a1b9a;
+  transition: text-shadow 0.3s ease-in-out;
+}
+
+.category-card:hover h2 {
+    text-shadow: 0 0 10px #ce93d8, 0 0 20px #ce93d8, 0 0 30px #ce93d8, 0 0 40px #6a1b9a, 0 0 70px #6a1b9a, 0 0 80px #6a1b9a, 0 0 100px #6a1b9a, 0 0 150px #6a1b9a;
+}
+
+.category-btn {
+  box-shadow: 0 0 5px #ce93d8, 0 0 10px #ce93d8, 0 0 15px #ce93d8, 0 0 20px #6a1b9a, 0 0 35px #6a1b9a, 0 0 40px #6a1b9a, 0 0 50px #6a1b9a, 0 0 75px #6a1b9a;
+  transition: box-shadow 0.3s ease-in-out;
+}
+
+.category-btn:hover {
+  box-shadow: 0 0 5px #ce93d8, 0 0 25px #ce93d8, 0 0 50px #ce93d8, 0 0 100px #ce93d8;
+}
+
+.category-card:hover {
+  box-shadow: 0 0 10px #d1c4e9, 0 0 40px #d1c4e9, 0 0 80px #d1c4e9, 0 0 120px #d1c4e9;
+}

@@ -1,0 +1,110 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "name": "Demo User",
+      "email": "user@example.com",
+      "password": "password123"
+    },
+    {
+      "name": "jyothika kamuju",
+      "email": "jss.jyo2002@gmail.com",
+      "password": "Jyothika@21234",
+      "id": 2
+    },
+    {
+      "name": "ramsri",
+      "email": "ramsri.sri2004@gmail.com",
+      "password": "ramsri@#89",
+      "id": 3
+    },
+    {
+      "name": "hemanth",
+      "email": "kittali123@gmail.com",
+      "password": "asdfghjkl",
+      "id": 4
+    }
+  ],
+  "admin": [
+    {
+      "id": 1,
+      "email": "admin@statiz.com",
+      "password": "admin123"
+    }
+  ],
+  "orders": [
+    {
+      "orderDate": "2026-01-02T05:07:54.256Z",
+      "customerName": "hemanth",
+      "customerEmail": "kittali123@gmail.com",
+      "customerPhone": "6304050076",
+      "deliveryAddress": "sector-2,street no-9,sai ram colony,kommadhi , Visakhapatnam",
+      "city": "Visakhapatnam ",
+      "postalCode": "530048 ",
+      "items": [
+        {
+          "name": "Gel Pens Set",
+          "price": 199
+        },
+        {
+          "name": "Gel Pens Set",
+          "price": 199
+        }
+      ],
+      "subtotal": 398,
+      "discount": 20,
+      "shipping": 0,
+      "total": 378,
+      "status": "pending",
+      "paymentMethod": "card",
+      "cardLast4": "1244",
+      "id": 1
+    },
+    {
+      "orderDate": "2026-01-02T18:50:46.605Z",
+      "customerName": "jyothika kamuju",
+      "customerEmail": "jss.jyo2002@gmail.com",
+      "customerPhone": "6304050076",
+      "deliveryAddress": "sector-2,street no-9,sai ra m colony,kommadhi , Visakhapatnam",
+      "city": "Visakhapatnam ",
+      "postalCode": "530048 ",
+      "items": [
+        {
+          "name": "Acrylic Paint Set",
+          "price": 499
+        }
+      ],
+      "subtotal": 499,
+      "discount": 25,
+      "shipping": 0,
+      "total": 474,
+      "status": "pending",
+      "paymentMethod": "card",
+      "cardLast4": " 000",
+      "id": 2
+    },
+    {
+      "orderDate": "2026-01-02T19:02:04.654Z",
+      "customerName": "jyothika kamuju",
+      "customerEmail": "jss.jyo2002@gmail.com",
+      "customerPhone": "6304050076",
+      "deliveryAddress": " sector-2,street no-9,sai ram colony,kommadhi , Visakhapatnam",
+      "city": " Visakhapatnam",
+      "postalCode": " 530048",
+      "items": [
+        {
+          "name": "Acrylic Paint Set",
+          "price": 499
+        }
+      ],
+      "subtotal": 499,
+      "discount": 25,
+      "shipping": 0,
+      "total": 474,
+      "status": "pending",
+      "paymentMethod": "card",
+      "cardLast4": "1111",
+      "id": 3
+    }
+  ]
+}

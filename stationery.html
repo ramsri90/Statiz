@@ -1,0 +1,244 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Statiz | Stationery</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles/navbar.css">
+<link rel="stylesheet" href="styles/products.css">
+<script src="scripts/auth.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="index.html" class="navbar-logo">🎨 Stat<span>iz</span></a>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link">Shop ▼</a>
+        <div class="dropdown-menu">
+          <a href="art-crafts.html" class="dropdown-item">🎨 Art & Crafts</a>
+          <a href="stationery.html" class="dropdown-item">📓 Stationery</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="myorders.html" class="nav-link">My Orders</a>
+      </li>
+      <li class="nav-item">
+        <a href="cart.html" class="nav-link cart-link">
+          🛒 Cart <span class="cart-count" id="navCartCount">0</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">About</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+    <div class="nav-buttons">
+      <a href="login.html"><button class="nav-btn">Login</button></a>
+    </div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>Stationery Items Collection</h1>
+  
+  <section class="products">
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\notebook.webp" alt="Notebooks">
+      <h3>Premium Notebooks <span class="product-subtitle">(Pack of 5)</span></h3>
+      <p class="price">₹299</p>
+      <button onclick="addToCart(299, 'Premium Notebooks')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\gelpens.webp" alt="Pens Set">
+      <h3>Gel Pens Set <span class="product-subtitle">(20pcs)</span></h3>
+      <p class="price">₹199</p>
+      <button onclick="addToCart(199, 'Gel Pens Set')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="images\pencils.webp" alt="Pencils">
+      <h3>HB Pencils <span class="product-subtitle">(Dozen)</span></h3>
+      <p class="price">₹89</p>
+      <button onclick="addToCart(89, 'HB Pencils')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\stickynotes.webp" alt="Sticky Notes">
+      <h3>Sticky Notes <span class="product-subtitle">(5 Pads)</span></h3>
+      <p class="price">₹149</p>
+      <button onclick="addToCart(149, 'Sticky Notes')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\fileholder.webp" alt="Files Folders">
+      <h3>A4 Files & Folders <span class="product-subtitle">(Pack of 10)</span></h3>
+      <p class="price">₹249</p>
+      <button onclick="addToCart(249, 'A4 Files & Folders')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\highlighters.webp" alt="Highlighters">
+      <h3>Highlighters Set <span class="product-subtitle">(6 Colors)</span></h3>
+      <p class="price">₹129</p>
+      <button onclick="addToCart(129, 'Highlighters Set')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="images\erasers.webp" alt="Erasers">
+      <h3>Erasers <span class="product-subtitle">(Pack of 5)</span></h3>
+      <p class="price">₹49</p>
+      <button onclick="addToCart(49, 'Erasers')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <img src="images\sharpners.webp" alt="Sharpeners">
+      <h3>Pencil Sharpeners <span class="product-subtitle">(Pack of 3)</span></h3>
+      <p class="price">₹79</p>
+      <button onclick="addToCart(79, 'Pencil Sharpeners')">Add to Cart</button>
+    </div>
+  </section>
+</div>
+
+<div class="cart">
+  <div id="cartInfo">🛒 0 items | ₹0</div>
+  <div class="cart-buttons">
+    <button onclick="viewCart()">View Cart</button>
+    <button onclick="goToCheckout()" class="btn-checkout-direct">Checkout</button>
+  </div>
+</div>
+
+<script>
+// Authorization Check
+function checkAuthorization() {
+  const userEmail = localStorage.getItem('userEmail');
+  if (!userEmail) {
+    alert('Please login to continue');
+    window.location.href = 'login.html';
+    return false;
+  }
+  return true;
+}
+
+// Check authorization on page load
+if (!checkAuthorization()) {
+  throw new Error('Unauthorized');
+}
+
+// Update navbar with user info
+function updateUserDisplay() {
+  const userName = localStorage.getItem('userName');
+  const userEmail = localStorage.getItem('userEmail');
+  const navButtons = document.querySelector('.nav-buttons');
+  
+  if (userName || userEmail) {
+    navButtons.innerHTML = `
+      <span style="color: #fff; margin-right: 10px;">👤 ${userName || userEmail}</span>
+      <button class="nav-btn logout" onclick="logout()">Logout</button>
+    `;
+  }
+}
+
+function logout() {
+  localStorage.removeItem('userEmail');
+  localStorage.removeItem('userName');
+  window.location.href = 'login.html';
+}
+
+document.addEventListener('DOMContentLoaded', updateUserDisplay);
+
+let cartItems = [];
+let cartCount = 0;
+let cartTotal = 0;
+
+// Load cart from localStorage on page load
+function loadCartFromStorage() {
+  const storedCart = localStorage.getItem('cart');
+  if (storedCart) {
+    cartItems = JSON.parse(storedCart);
+    cartCount = cartItems.length;
+    cartTotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+    updateCart();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadCartFromStorage);
+
+function addToCart(price, name) {
+  cartItems.push({ name, price });
+  cartCount++;
+  cartTotal += price;
+  
+  // Save to localStorage immediately
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+  
+  updateCart();
+  // Update navbar cart count
+  if (typeof updateNavbarCartCount === 'function') {
+    updateNavbarCartCount();
+  }
+  alert(`${name} added to cart!`);
+}
+
+function updateCart() {
+  document.getElementById("cartInfo").innerText =
+    `🛒 ${cartCount} items | ₹${cartTotal}`;
+}
+
+function goToCheckout() {
+  if (cartCount === 0) {
+    alert('Your cart is empty!');
+    return;
+  }
+  
+  // Save cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+  
+  // Update navbar cart count before redirect
+  if (typeof updateNavbarCartCount === 'function') {
+    updateNavbarCartCount();
+  }
+  
+  // Redirect to checkout
+  window.location.href = 'checkout.html';
+}
+
+function viewCart() {
+  if (cartCount === 0) {
+    alert('Your cart is empty!');
+    return;
+  }
+  
+  // Save cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+  
+  // Update navbar cart count before redirect
+  if (typeof updateNavbarCartCount === 'function') {
+    updateNavbarCartCount();
+  }
+  
+  // Redirect to cart page
+  window.location.href = 'cart.html';
+}
+</script>
+
+<script src="scripts/navbar.js"></script>
+</body>
+</html>

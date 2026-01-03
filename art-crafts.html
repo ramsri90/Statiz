@@ -1,0 +1,231 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Statiz | Art & Crafts</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles/navbar.css">
+<link rel="stylesheet" href="styles/products.css">
+<script src="scripts/auth.js"></script>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="index.html" class="navbar-logo">🎨 Stat<span>iz</span></a>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">Home</a>
+      </li>
+      <li class="nav-item dropdown">
+        <a href="#" class="nav-link">Shop ▼</a>
+        <div class="dropdown-menu">
+          <a href="art-crafts.html" class="dropdown-item">🎨 Art & Crafts</a>
+          <a href="stationery.html" class="dropdown-item">📓 Stationery</a>
+        </div>
+      </li>
+      <li class="nav-item">
+        <a href="myorders.html" class="nav-link">My Orders</a>
+      </li>
+      <li class="nav-item">
+        <a href="cart.html" class="nav-link cart-link">
+          🛒 Cart <span class="cart-count" id="navCartCount">0</span>
+        </a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">About</a>
+      </li>
+      <li class="nav-item">
+        <a href="#" class="nav-link">Contact</a>
+      </li>
+    </ul>
+    <div class="nav-buttons">
+      <a href="login.html"><button class="nav-btn">Login</button></a>
+    </div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="container">
+  <h1>Art & Crafts Collection</h1>
+  
+  <section class="products">
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\Acrylic-Paints-x-12_02.webp" alt="Acrylic Paint Set">
+      <h3>Acrylic Paint Set</h3>
+      <p class="price">₹499</p>
+      <button onclick="addToCart(499, 'Acrylic Paint Set')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\PROFESSIONALBRUSHSET.webp" alt="Brush Set">
+      <h3>Professional Brush Set</h3>
+      <p class="price">₹599</p>
+      <button onclick="addToCart(599, 'Professional Brush Set')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\canvaspad.webp" alt="Canvas Pad">
+      <h3>Canvas Pad <span class="product-subtitle">(12x16)</span></h3>
+      <p class="price">₹349</p>
+      <button onclick="addToCart(349, 'Canvas Pad')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\colourpencils.webp" alt="Color Pencils">
+      <h3>Premium Color Pencils <span class="product-subtitle">(36pcs)</span></h3>
+      <p class="price">₹399</p>
+      <button onclick="addToCart(399, 'Color Pencils')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\sketchpad.webp" alt="Sketch Pad">
+      <h3>Sketch Pad <span class="product-subtitle">(100 pages)</span></h3>
+      <p class="price">₹249</p>
+      <button onclick="addToCart(249, 'Sketch Pad')">Add to Cart</button>
+    </div>
+
+    <div class="product">
+      <div class="product-badge">✨ Special Offer</div>
+      <img src="images\oilpaintset.webp" alt="Oil Paint Set">
+      <h3>Oil Paint Set</h3>
+      <p class="price">₹799</p>
+      <button onclick="addToCart(799, 'Oil Paint Set')">Add to Cart</button>
+    </div>
+  </section>
+</div>
+
+<div class="cart">
+  <div id="cartInfo">🛒 0 items | ₹0</div>
+  <div class="cart-buttons">
+    <button onclick="viewCart()">View Cart</button>
+    <button onclick="goToCheckout()" class="btn-checkout-direct">Checkout</button>
+  </div>
+</div>
+
+<script>
+// Authorization Check
+function checkAuthorization() {
+  const userEmail = localStorage.getItem('userEmail');
+  if (!userEmail) {
+    alert('Please login to continue');
+    window.location.href = 'login.html';
+    return false;
+  }
+  return true;
+}
+
+// Check authorization on page load
+if (!checkAuthorization()) {
+  throw new Error('Unauthorized');
+}
+
+// Update navbar with user info
+function updateUserDisplay() {
+  const userName = localStorage.getItem('userName');
+  const userEmail = localStorage.getItem('userEmail');
+  const navButtons = document.querySelector('.nav-buttons');
+  
+  if (userName || userEmail) {
+    navButtons.innerHTML = `
+      <span style="color: #fff; margin-right: 10px;">👤 ${userName || userEmail}</span>
+      <button class="nav-btn logout" onclick="logout()">Logout</button>
+    `;
+  }
+}
+
+function logout() {
+  localStorage.removeItem('userEmail');
+  localStorage.removeItem('userName');
+  window.location.href = 'login.html';
+}
+
+document.addEventListener('DOMContentLoaded', updateUserDisplay);
+
+let cartItems = [];
+let cartCount = 0;
+let cartTotal = 0;
+
+// Load cart from localStorage on page load
+function loadCartFromStorage() {
+  const storedCart = localStorage.getItem('cart');
+  if (storedCart) {
+    cartItems = JSON.parse(storedCart);
+    cartCount = cartItems.length;
+    cartTotal = cartItems.reduce((sum, item) => sum + item.price, 0);
+    updateCart();
+  }
+}
+
+document.addEventListener('DOMContentLoaded', loadCartFromStorage);
+
+function addToCart(price, name) {
+  cartItems.push({ name, price });
+  cartCount++;
+  cartTotal += price;
+  
+  // Save to localStorage immediately
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+  
+  updateCart();
+  // Update navbar cart count
+  if (typeof updateNavbarCartCount === 'function') {
+    updateNavbarCartCount();
+  }
+  alert(`${name} added to cart!`);
+}
+
+function updateCart() {
+  document.getElementById("cartInfo").innerText =
+    `🛒 ${cartCount} items | ₹${cartTotal}`;
+}
+
+function goToCheckout() {
+  if (cartCount === 0) {
+    alert('Your cart is empty!');
+    return;
+  }
+  
+  // Save cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+  
+  // Update navbar cart count before redirect
+  if (typeof updateNavbarCartCount === 'function') {
+    updateNavbarCartCount();
+  }
+  
+  // Redirect to checkout
+  window.location.href = 'checkout.html';
+}
+
+function viewCart() {
+  if (cartCount === 0) {
+    alert('Your cart is empty!');
+    return;
+  }
+  
+  // Save cart to localStorage
+  localStorage.setItem('cart', JSON.stringify(cartItems));
+  
+  // Update navbar cart count before redirect
+  if (typeof updateNavbarCartCount === 'function') {
+    updateNavbarCartCount();
+  }
+  
+  // Redirect to cart page
+  window.location.href = 'cart.html';
+}
+</script>
+
+<script src="scripts/navbar.js"></script>
+</body>
+</html>

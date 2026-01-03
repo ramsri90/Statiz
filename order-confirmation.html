@@ -1,0 +1,113 @@
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Statiz | Order Confirmation</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<link rel="stylesheet" href="styles/navbar.css">
+<link rel="stylesheet" href="styles/confirmation.css">
+<script src="scripts/auth.js"></script>
+<style>
+  html {
+    background-color: #121212;
+  }
+  body {
+    background-color: #121212 !important;
+    color: #e0e0e0;
+    min-height: 100vh;
+    margin: 0;
+  }
+  body.light-mode {
+    background-color: #f5f5f5 !important;
+    color: #333;
+  }
+  .confirmation-box {
+    background-color: #1e1e1e;
+    color: #e0e0e0;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+  }
+  body.light-mode .confirmation-box {
+    background-color: #fff;
+    color: #333;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+  }
+  h1, .delivery-info h3 { color: #ce93d8; }
+  body.light-mode h1, body.light-mode .delivery-info h3 { color: #6a1b9a; }
+  .label, .delivery-info p, .confirmation-footer p { color: #b0b0b0; }
+  body.light-mode .label, body.light-mode .delivery-info p, body.light-mode .confirmation-footer p { color: #666; }
+  .value, .order-message { color: #e0e0e0; }
+  body.light-mode .value, body.light-mode .order-message { color: #333; }
+</style>
+</head>
+
+<body>
+
+<nav class="navbar">
+  <div class="navbar-container">
+    <a href="index.html" class="navbar-logo">🎨 Stat<span>iz</span></a>
+    <ul class="nav-menu">
+      <li class="nav-item">
+        <a href="index.html" class="nav-link">Home</a>
+      </li>
+    </ul>
+    <div class="nav-greeting"></div>
+    <div class="nav-buttons">
+      <button id="themeToggle" class="nav-btn theme-btn">☀️</button>
+      <button class="nav-btn logout">Logout</button>
+    </div>
+    <div class="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+  </div>
+</nav>
+
+<div class="confirmation-container">
+  <div class="confirmation-box">
+    <div class="success-icon">✓</div>
+    <h1>Order Confirmed!</h1>
+    <p class="order-message">Thank you for your purchase</p>
+
+    <div class="order-details">
+      <div class="detail-row">
+        <span class="label">Order ID:</span>
+        <span class="value" id="orderId">-</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Order Date:</span>
+        <span class="value" id="orderDate">-</span>
+      </div>
+      <div class="detail-row" id="discountRow" style="display: none;">
+        <span class="label">Discount (5% Special Offer):</span>
+        <span class="value" id="discountAmount" style="color: #4caf50;">-</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Total Amount:</span>
+        <span class="value" id="totalAmount">-</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Status:</span>
+        <span class="value status-pending">Pending</span>
+      </div>
+    </div>
+
+    <div class="delivery-info">
+      <h3>Delivery Details</h3>
+      <p id="deliveryDetails">-</p>
+    </div>
+
+    <div class="action-buttons">
+      <a href="index.html"><button class="btn-home">Back to Home</button></a>
+      <a href="art-crafts.html"><button class="btn-continue">Continue Shopping</button></a>
+    </div>
+
+    <div class="confirmation-footer">
+      <p>A confirmation email has been sent to <strong id="confirmEmail">your email</strong></p>
+    </div>
+  </div>
+</div>
+
+<script src="scripts/confirmation.js"></script>
+<script src="scripts/navbar.js"></script>
+</body>
+</html>
